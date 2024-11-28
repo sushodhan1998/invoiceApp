@@ -14,12 +14,15 @@ This is a simple invoice management system built using Spring Boot. The applicat
 
 ## Run the Application
 
+     Clone the repository:
+        git clone https://github.com/sushodhan1998/invoiceApp.git
+        cd invoiceApp
+
      Change the directory using below command
         cd --Project Path--\invoiceApp\invoiceApp
 
      MAVEN
          To run app using Maven
-
              1 mvn clean install
              2 mvn spring-boot:run
          To run unit tests on Domain model,
@@ -135,22 +138,6 @@ This is a simple invoice management system built using Spring Boot. The applicat
 - Maven
 - Postman tool
 - docker desktop to run the container
-
-### Installation
-
-1. Clone the repository:
-   git clone <your-repo-url>
-   cd invoice-system
-
-2. Build the project:
-   ```bash
-   mvn clean install
-   ```
-
-3. Run the application:
-   ```bash
-   mvn spring-boot:run
-   ```
 
 ## Assumptions
 
