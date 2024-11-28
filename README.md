@@ -5,10 +5,10 @@ A simple invoice system that allows creating invoices, paying invoices, and proc
 
 Features
 
-- Create invoices with a specified amount and due date.
-- Retrieve all invoices with their details.
-- Pay a specific invoice and update its status accordingly.
-- Process overdue invoices by applying late fees.
+	- Create invoices with a specified amount and due date.
+	- Retrieve all invoices with their details.
+	- Pay a specific invoice and update its status accordingly.
+	- Process overdue invoices by applying late fees.
 
 
 Application runs on port "http://localhost:8080"
@@ -41,22 +41,24 @@ Endpoint Available:
 Create new invoices with a specified amount and due date.
 Request Type: POST
 
-localhost:8080/invoices
+	localhost:8080/invoices
 
 Sample Input Payload: 
-{
-"amount": 200.00,
-"dueDate": "2024-11-26"
-}
+
+	{
+	"amount": 200.00,
+	"dueDate": "2024-11-26"
+	}
 
 Validations:
 	"amount" must be positive
 	“dueDate” cannot be null
 
-	Sample Output Payload:
-{
-    "id": "3"
-}
+Sample Output Payload:
+
+	{
+	    "id": "3"
+	}
 
 This endpoint will return the ID for the new Invoice created. With the HTTP status code 201 CREATED.
 
@@ -64,62 +66,54 @@ This endpoint will return the ID for the new Invoice created. With the HTTP stat
 
 Process overdue invoices by applying late fees 
 
-	Request Type: GET
+Request Type: GET
 
-localhost:8080/invoices 
+	localhost:8080/invoices 
 
 Sample Input: N/A
 
 Sample Output:
 
-
-
-
-
-
-
-
-
-
-[
-    {
-        "id": "1",
-        "amount": 200.0,
-        "paidAmount": 0.0,
-        "dueDate": "2024-11-26",
-        "status": "VOID"
-    },
-    {
-        "id": "2",
-        "amount": 300.0,
-        "paidAmount": 0.0,
-        "dueDate": "2024-11-28",
-        "status": "PENDING"
-    },
-    {
-        "id": "3",
-        "amount": 200.0,
-        "paidAmount": 200.0,
-        "dueDate": "2024-11-26",
-        "status": "PAID"
-    }
-]
+	[
+	    {
+	        "id": "1",
+	        "amount": 200.0,
+	        "paidAmount": 0.0,
+	        "dueDate": "2024-11-26",
+	        "status": "VOID"
+	    },
+	    {
+	        "id": "2",
+	        "amount": 300.0,
+	        "paidAmount": 0.0,
+	        "dueDate": "2024-11-28",
+	        "status": "PENDING"
+	    },
+	    {
+	        "id": "3",
+	        "amount": 200.0,
+	        "paidAmount": 200.0,
+	        "dueDate": "2024-11-26",
+	        "status": "PAID"
+	    }
+	]
 
 Returns the entire invoice list in the system. With HTTP status code 200 OK
 
 Pay a specific invoice and update its status accordingly using the id.
 
-	Request Type: POST
-localhost:8080/invoices/{id}/payments
+Request Type: POST
+
+	localhost:8080/invoices/{id}/payments
 
 id-> pass the invoice id in endpoint	
 
-	Sample Input Payload:
-localhost:8080/invoices/1/payments
+Sample Input Payload:
+	localhost:8080/invoices/1/payments
 
-{
-    "amount": 200.00
-}
+	{
+	    "amount": 200.00
+	}
 
 	
 Validation:
@@ -127,62 +121,50 @@ Validation:
 
 Sample Output Payload:
 (If full amount paid for invoice)
-PAID Successfully!!
+	
+ 	PAID Successfully!!
 
 OR
 
 (If Amount paid partially calculation is done, Pending amount is show as part of response )
 
-PENDING Amount is  100.0
+	PENDING Amount is  100.0
 
 
 HTTP status code is 200 OK
 
 Process overdue invoices by applying late fees by checking overdue days
 
-	Request Type: POST
-localhost:8080/invoices/process-overdue
+Request Type: POST
+
+	localhost:8080/invoices/process-overdue
 
 Sample Input payload :
-	
-{
-    "lateFee":100.0,
-    "overDueDays":1
-}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 	
+	{
+	    "lateFee":100.0,
+	    "overDueDays":1
+	}
 
 Sample Output payload
 
-[
-    {
-        "id": "1",
-        "amount": 200.0,
-        "paidAmount": 0.0,
-        "dueDate": "2024-11-26",
-        "status": "VOID"
-    },
-    {
-        "id": "2",
-        "amount": 300.0,
-        "paidAmount": 0.0,
-        "dueDate": "2024-11-28",
-        "status": "PENDING"
-    }
-]
+	[
+	    {
+	        "id": "1",
+	        "amount": 200.0,
+	        "paidAmount": 0.0,
+	        "dueDate": "2024-11-26",
+	        "status": "VOID"
+	    },
+	    {
+	        "id": "2",
+	        "amount": 300.0,
+	        "paidAmount": 0.0,
+	        "dueDate": "2024-11-28",
+	        "status": "PENDING"
+	    }
+	]
 
 
 
