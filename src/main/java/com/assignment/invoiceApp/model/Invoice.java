@@ -1,5 +1,7 @@
 package com.assignment.invoiceApp.model;
 
+import jakarta.validation.constraints.*;
+
 import java.time.LocalDate;
 
 
@@ -7,8 +9,13 @@ import java.time.LocalDate;
 public class Invoice {
 
     private String id;
+
+    @Positive(message = "Amount must be positive")
     private float amount;
+
+    @PositiveOrZero(message = "Paid amount must be positive")
     private float paidAmount;
+
     private LocalDate dueDate;
     private InvoiceStatus status;
 
