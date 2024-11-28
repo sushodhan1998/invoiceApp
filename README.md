@@ -1,8 +1,9 @@
-# Invoice System
+BE Assignment
 
-This is a simple invoice management system built using Spring Boot. The application allows users to create invoices, pay invoices, and process overdue invoices.
+A simple invoice system that allows creating invoices, paying invoices, and processing overdue invoices. The system has following APIs:
 
-## Features
+
+Features
 
 - Create invoices with a specified amount and due date.
 - Retrieve all invoices with their details.
@@ -10,25 +11,24 @@ This is a simple invoice management system built using Spring Boot. The applicat
 - Process overdue invoices by applying late fees.
 
 
-## Application runs on port "http://localhost:8080"
+Application run on port "http://localhost:8080"
 
-## Run the Application
+ Run the Application
 
      Clone the repository:
         git clone -b master https://github.com/sushodhan1998/invoiceApp.git
-        cd invoiceApp
 
      Change the directory using below command
-        cd --Project Path--\invoiceApp\invoiceApp
-
-     To create JAR file in invoiceApp/target use below command
+        cd invoiceApp
+              
+     Create JAR file in invoiceApp/target use below command 
         mvn clean install
 
      MAVEN
          To run app using Maven
-             1 mvn spring-boot:run
+              mvn spring-boot:run
          To run unit tests on Domain model,
-               mvn test
+              mvn test
      DOCKER
         To run app using docker-compose
             To start the container
@@ -36,112 +36,155 @@ This is a simple invoice management system built using Spring Boot. The applicat
             To stop  the container
                 docker-compose down
 
-## APIs
+Endpoint Available:
 
-### 1. Create Invoice
+Create new invoices with a specified amount and due date.
+Request Type: POST
 
-- Endpoint: `POST localhost:8080/invoices`
-- Request Body:
-  {
-  "amount": 200.00,
-  "dueDate": "2024-11-26"
-  }
+localhost:8080/invoices
 
-- Response:
-  - Status: `201 Created`
-  - Body:
-  {
-      "id": "1"
-  }
+Sample Input Payload: 
+{
+"amount": 200.00,
+"dueDate": "2024-11-26"
+}
 
-### 2. Get All Invoices
+Validations:
+	"amount" must be positive
+	“dueDate” cannot be null
 
-- Endpoint: `GET localhost:8080/invoices`
-- Response:
-  - Status: `200 OK`
-  - Body:
-  [
-      {
-          "id": "1",
-          "amount": 200.0,
-          "paidAmount": 0.0,
-          "dueDate": "2024-11-26",
-          "status": "VOID"
-      },
-      {
-          "id": "2",
-          "amount": 300.0,
-          "paidAmount": 0.0,
-          "dueDate": "2024-11-28",
-          "status": "PENDING"
-      },
-      {
-          "id": "3",
-          "amount": 200.0,
-          "paidAmount": 200.0,
-          "dueDate": "2024-11-26",
-          "status": "PAID"
-      }
-  ]
+	Sample Output Payload:
+{
+    "id": "3"
+}
+
+This endpoint will return the ID for the new Invoice created. With the HTTP status code 201 CREATED.
 
 
-### 3. Pay Invoice
 
-- Endpoint: `POST localhost:8080/invoices/{id}/payments`
-- **Request Body**:
-  {
-  "amount": 200.00,
-  "dueDate": "2024-11-26"
-  }
+Process overdue invoices by applying late fees 
 
-- Response:
-    - Body:
-    (If full amount paid for invoice)
-                     PAID Successfully!!
-                            OR
-    (If Amount paid partially calculation is done, Pending amount is show as part of response )
-                    PENDING Amount is  100.0
+	Request Type: GET
 
-  - Status: `200 OK`
+localhost:8080/invoices 
 
-### 4. Process Overdue Invoices
+Sample Input: N/A
 
-- Endpoint: `POST localhost:8080/invoices/process-overdue`
-- Request Body:
-  {
-      "lateFee":100.0,
-      "overDueDays":5
-  }
-- Response:
-  - Body:
-    [
-        {
-            "id": "1",
-            "amount": 200.0,
-            "paidAmount": 0.0,
-            "dueDate": "2024-11-26",
-            "status": "VOID"
-        },
-        {
-            "id": "2",
-            "amount": 300.0,
-            "paidAmount": 0.0,
-            "dueDate": "2024-11-28",
-            "status": "PENDING"
-        }
-    ]
-  - Status: `200 OK`
+Sample Output:
 
-## Getting Started
 
-### Prerequisites
 
-- Java 8 or higher
-- Maven
-- Postman tool
-- docker desktop to run the container
 
-## Assumptions
 
-- The application uses in-memory data structures for storing invoices, making it easy to extend with a database in the future.
-- Validations on input data for creating invoices are minimal and can be enhanced.
+
+
+
+
+
+[
+    {
+        "id": "1",
+        "amount": 200.0,
+        "paidAmount": 0.0,
+        "dueDate": "2024-11-26",
+        "status": "VOID"
+    },
+    {
+        "id": "2",
+        "amount": 300.0,
+        "paidAmount": 0.0,
+        "dueDate": "2024-11-28",
+        "status": "PENDING"
+    },
+    {
+        "id": "3",
+        "amount": 200.0,
+        "paidAmount": 200.0,
+        "dueDate": "2024-11-26",
+        "status": "PAID"
+    }
+]
+
+Returns the entire invoice list in the system. With HTTP status code 200 OK
+
+Pay a specific invoice and update its status accordingly using the id.
+
+	Request Type: POST
+localhost:8080/invoices/{id}/payments
+
+id-> pass the invoice id in endpoint	
+
+	Sample Input Payload:
+localhost:8080/invoices/1/payments
+
+{
+    "amount": 200.00
+}
+
+	
+Validation:
+		"amount" Paid amount must be zero or positive
+
+Sample Output Payload:
+(If full amount paid for invoice)
+PAID Successfully!!
+
+OR
+
+(If Amount paid partially calculation is done, Pending amount is show as part of response )
+
+PENDING Amount is  100.0
+
+
+HTTP status code is 200 OK
+
+Process overdue invoices by applying late fees by checking overdue days
+
+	Request Type: POST
+localhost:8080/invoices/process-overdue
+
+Sample Input payload :
+	
+{
+    "lateFee":100.0,
+    "overDueDays":1
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Sample Output payload
+
+[
+    {
+        "id": "1",
+        "amount": 200.0,
+        "paidAmount": 0.0,
+        "dueDate": "2024-11-26",
+        "status": "VOID"
+    },
+    {
+        "id": "2",
+        "amount": 300.0,
+        "paidAmount": 0.0,
+        "dueDate": "2024-11-28",
+        "status": "PENDING"
+    }
+]
+
+
+
+HTTP status code is 200 OK
+
