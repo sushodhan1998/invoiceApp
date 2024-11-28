@@ -11,7 +11,7 @@ Features
 - Process overdue invoices by applying late fees.
 
 
-Application run on port "http://localhost:8080"
+Application runs on port "http://localhost:8080"
 
  Run the Application
 
