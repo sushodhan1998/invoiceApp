@@ -15,7 +15,7 @@ This is a simple invoice management system built using Spring Boot. The applicat
 ## Run the Application
 
      Clone the repository:
-        git clone https://github.com/sushodhan1998/invoiceApp.git
+        git clone -b master https://github.com/sushodhan1998/invoiceApp.git
         cd invoiceApp
 
      Change the directory using below command

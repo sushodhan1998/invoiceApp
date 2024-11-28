@@ -1,15 +1,9 @@
 package com.assignment.invoiceApp.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import java.time.LocalDate;
 
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+
 public class Invoice {
 
     private String id;
@@ -18,5 +12,43 @@ public class Invoice {
     private LocalDate dueDate;
     private InvoiceStatus status;
 
+    public String getId() {
+        return id;
+    }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public float getAmount() {
+        return amount;
+    }
+
+    public void setAmount(float amount) {
+        this.amount = amount;
+    }
+
+    public float getPaidAmount() {
+        return paidAmount;
+    }
+
+    public void setPaidAmount(float paidAmount) {
+        this.paidAmount = paidAmount;
+    }
+
+    public LocalDate getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(LocalDate dueDate) {
+        this.dueDate = dueDate;
+    }
+
+    public InvoiceStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(InvoiceStatus status) {
+        this.status = status;
+    }
 }
