@@ -21,10 +21,12 @@ This is a simple invoice management system built using Spring Boot. The applicat
      Change the directory using below command
         cd --Project Path--\invoiceApp\invoiceApp
 
+     To create JAR file in invoiceApp/target use below command
+        mvn clean install
+
      MAVEN
          To run app using Maven
-             1 mvn clean install
-             2 mvn spring-boot:run
+             1 mvn spring-boot:run
          To run unit tests on Domain model,
                mvn test
      DOCKER
